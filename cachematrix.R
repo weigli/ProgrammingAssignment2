@@ -1,15 +1,20 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Matrix inversion is usually a costly computation and there may be some benefit to caching the 
+## inverse of a matrix rather than computing it repeatedly. A pair of functions that cache the inverse 
+## of a matrix are being provided 
 
-## Write a short comment describing this function
-
+## This function creates a special "matrix" object that can cache its inverse.
 makeCacheMatrix <- function(x = matrix()) {
-
+  y <<- solve(x)
+  y
 }
 
 
-## Write a short comment describing this function
-
+## This function computes the inverse of the special "matrix"
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+  r <- makeCacheMatrix(x)
+  if(!is.null(r)) {
+    message("return reverse from makeCacheMatrix")
+    return(r)
+  }
+  solve(x)
 }
